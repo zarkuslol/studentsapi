@@ -6,6 +6,8 @@ const prisma = new PrismaClient();
 export class DatabaseFunctions {
     async selectAll() {
         const student = await prisma.student.findMany();
+
+        prisma.$disconnect;
         return student;
     }
 
@@ -15,6 +17,8 @@ export class DatabaseFunctions {
                 id: parseInt(id),
             }
         });
+
+        prisma.$disconnect;
         return student;
     }
 
@@ -26,6 +30,8 @@ export class DatabaseFunctions {
                 year: parseInt(student.year)
             }
         });
+
+        prisma.$disconnect;
         return newStudent;
     }
 
@@ -35,6 +41,8 @@ export class DatabaseFunctions {
                 id: parseInt(id),
             }
         });
+
+        prisma.$disconnect;
         return deletedStudent;
     }
 }

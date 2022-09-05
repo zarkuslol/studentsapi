@@ -35,7 +35,7 @@ export class ApiController {
         const newStudent: StudentType = { name: name, grade: grade, year: year };
         try {
             const data = await db.create(newStudent);
-            res.status(201).json(data);
+            res.status(201).json({ added: data });
         }
         catch (e) {
             res.json(e);
