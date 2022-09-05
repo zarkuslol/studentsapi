@@ -9,12 +9,47 @@ export class ApiController {
         res.json({ message: "Olá da classe API" });
     }
 
-    readAllStudents(req: Request, res: Response) {
-        const data = db.select();
-        res.json(data);
+    async readAllStudents(req: Request, res: Response) {
+        try {
+            const data = await db.selectAll();
+            res.json(data);
+        }
+        catch (e) {
+            res.json(e);
+        }
     }
 
-    createNewStudent(req: Request, res: Response) {
+    async readOneStudent(req: Request, res: Response) {
+        const { id } = req.params;
+        try {
+            const data = await db.selectOne(id);
+            res.json(data);
+        }
+        catch (e) {
+            res.json(e);
+        }
+    }
 
+    async createNewStudent(req: Request, res: Response) {
+        const { name, grade, year } = req.body;
+        const newStudent: StudentType = { name: name, grade: grade, year: year };
+        try {
+            const data = await db.create(newStudent);
+            res.status(201).json(data);
+        }
+        catch (e) {
+            res.json(e);
+        }
+    }
+
+    async deleteOneStudent(req: Request, res: Response) {
+        const { id } = req.params;
+        try {
+            const data = await db.delete(id);
+            res.status(201).json({ deleted: data })
+        }
+        catch (e) {
+            res.json(e);
+        }
     }
 }

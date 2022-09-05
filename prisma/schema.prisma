@@ -12,7 +12,7 @@ datasource db {
 
 model Student {
   id    Int    @id @default(autoincrement())
-  name  String @unique
+  name  String
   grade String
   year  Int
 }
