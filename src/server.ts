@@ -13,4 +13,4 @@ server.get("/", (req: Request, res: Response) => {
     res.redirect("/api/v1/");
 })
 
-http.createServer(server).listen(443);
+http.createServer(server).listen(80);
