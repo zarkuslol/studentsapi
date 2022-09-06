@@ -1,5 +1,5 @@
 import express, { Request, Response } from "express";
-import { resolve } from "path";
+import http from "http";
 import routes from "./api";
 
 const server = express();
@@ -13,6 +13,4 @@ server.get("/", (req: Request, res: Response) => {
     res.redirect("/api/v1/");
 })
 
-server.listen(3000, () => {
-    console.log("Servidor ligado");
-});
+http.createServer(server).listen(443);
