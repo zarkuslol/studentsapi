@@ -1,10 +1,12 @@
 version: '3'
-
 services:
-  app:
+  node:
     build: .
-    command: ts-node src/server.ts
+    command: "npm run start"
+    working_dir: /home/app/node
+    environment:
+      - NODE_ENV=production
+    expose:
+      - '3000'
     ports:
-      - '3000:3000'
-    volumes:
-      - .:/usr/app
+      - "3000:3000"
