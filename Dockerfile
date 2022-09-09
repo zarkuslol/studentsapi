@@ -4,5 +4,5 @@ COPY package*.json /usr/src/app/
 RUN npm install
 COPY . .
 RUN npx prisma generate
-EXPOSE 3000
+EXPOSE 8080
 CMD ["npm", "start"]

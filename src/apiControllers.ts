@@ -6,16 +6,22 @@ const db = new DatabaseFunctions();
 
 export class ApiController {
     hello(req: Request, res: Response) {
-        res.json({ message: "Olá da classe API" });
+        if (req.header("Private-Access-Key") === "paodealface") {
+            res.status(201).json({ message: "Olá da classe API" });
+            console.log(req.headers);
+        }
+        else {
+            res.status(404).json({ message: "Rota não existente" });
+        }
     }
 
     async readAllStudents(req: Request, res: Response) {
         try {
             const data = await db.selectAll();
-            res.json(data);
+            res.status(201).json(data);
         }
         catch (e) {
-            res.json(e);
+            res.status(400).json(e);
         }
     }
 
@@ -23,10 +29,10 @@ export class ApiController {
         const { id } = req.params;
         try {
             const data = await db.selectOne(id);
-            res.json(data);
+            res.status(201).json(data);
         }
         catch (e) {
-            res.json(e);
+            res.status(400).json(e);
         }
     }
 
@@ -38,7 +44,7 @@ export class ApiController {
             res.status(201).json({ added: data });
         }
         catch (e) {
-            res.json(e);
+            res.status(400).json(e);
         }
     }
 
@@ -49,7 +55,7 @@ export class ApiController {
             res.status(201).json({ deleted: data })
         }
         catch (e) {
-            res.json(e);
+            res.status(400).json(e);
         }
     }
 }

@@ -13,4 +13,6 @@ server.get("/", (req: Request, res: Response) => {
     res.redirect("/api/v1/");
 })
 
-http.createServer(server).listen(80);
+server.listen(8080, () => {
+    console.log("Servidor ativo com sucesso");
+});
