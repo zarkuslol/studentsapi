@@ -6,13 +6,8 @@ const db = new DatabaseFunctions();
 
 export class ApiController {
     hello(req: Request, res: Response) {
-        if (req.header("Private-Access-Key") === "paodealface") {
-            res.status(201).json({ message: "Olá da classe API" });
-            console.log(req.headers);
-        }
-        else {
-            res.status(404).json({ message: "Rota não existente" });
-        }
+        res.status(201).json({ message: "Olá da classe API" });
+        console.log(req.headers);
     }
 
     async readAllStudents(req: Request, res: Response) {
