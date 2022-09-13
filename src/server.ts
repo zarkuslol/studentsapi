@@ -1,11 +1,12 @@
 import express, { Request, Response } from "express";
-import http from "http";
 import routes from "./api";
+import cors from "cors";
 
 const server = express();
 
 server.use(express.json());
 server.use(express.urlencoded({ extended: true }));
+server.use(cors());
 
 server.use("/api/v1/", routes);
 
