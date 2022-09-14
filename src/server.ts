@@ -14,6 +14,6 @@ server.get("/", (req: Request, res: Response) => {
     res.redirect("/api/v1/");
 })
 
-server.listen(8080, () => {
+server.listen(process.env.PORT || 8080, () => {
     console.log("Servidor ativo com sucesso");
 });
